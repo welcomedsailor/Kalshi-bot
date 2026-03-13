@@ -8,15 +8,15 @@ load_dotenv()
 
 def check_env():
 missing = []
-if not os.getenv(“KALSHI_API_KEY_ID”):
-missing.append(“KALSHI_API_KEY_ID”)
-if not os.getenv(“KALSHI_PRIVATE_KEY_CONTENT”) and   
-not os.path.exists(os.getenv(“KALSHI_PRIVATE_KEY_PATH”, “kalshi.key”)):
-missing.append(“KALSHI_PRIVATE_KEY_CONTENT”)
+if not os.getenv("KALSHI_API_KEY_ID"):
+missing.append("KALSHI_API_KEY_ID")
+if not os.getenv("KALSHI_PRIVATE_KEY_CONTENT") and   
+not os.path.exists(os.getenv("KALSHI_PRIVATE_KEY_PATH", "kalshi.key")):
+missing.append("KALSHI_PRIVATE_KEY_CONTENT")
 if missing:
-print(“ERROR: Missing required environment variables:”)
+print("ERROR: Missing required environment variables:")
 for m in missing:
-print(”  - “ + m)
+print("  - " + m)
 sys.exit(1)
 
 check_env()
@@ -28,12 +28,12 @@ from signals import RuleEngine, RiskManager, Signal, DEFAULT_RULES
 
 logging.basicConfig(
 level=logging.INFO,
-format=”%(asctime)s [%(levelname)s] %(message)s”,
-datefmt=”%Y-%m-%d %H:%M:%S”,
+format="%(asctime)s [%(levelname)s] %(message)s",
+datefmt="%Y-%m-%d %H:%M:%S",
 stream=sys.stdout,
 force=True,
 )
-log = logging.getLogger(“kalshi.bot”)
+log = logging.getLogger("kalshi.bot")
 
 class KalshiQuantBot:
 def **init**(self, watchlist, poll_interval_secs=30, dry_run=True,
@@ -52,14 +52,14 @@ self.engine = RuleEngine(rules or DEFAULT_RULES)
 self.risk = RiskManager()
 self.inventory = {t: 0.0 for t in watchlist}
 self.stats = {
-“ticks”: 0, “trades”: 0, “blocked_vpin”: 0,
-“blocked_jump”: 0, “blocked_entropy”: 0, “blocked_risk”: 0,
+"ticks": 0, "trades": 0, "blocked_vpin": 0,
+"blocked_jump": 0, “blocked_entropy”: 0, “blocked_risk”: 0,
 }
-log.info(”=” * 65)
-log.info(“Kalshi Quant Bot starting”)
-log.info(“Watchlist: “ + str(watchlist))
-log.info(“Dry run: “ + str(dry_run))
-log.info(”=” * 65)
+log.info("=" * 65)
+log.info("Kalshi Quant Bot starting")
+log.info("Watchlist: " + str(watchlist))
+log.info("Dry run: " + str(dry_run))
+log.info("=" * 65)
 
 ```
 def run(self):
@@ -140,16 +140,16 @@ def _execute(self, ticker, signal, price, size):
 
 if **name** == “**main**”:
 watchlist_env = os.getenv(“KALSHI_WATCHLIST”, “”)
-WATCHLIST = [t.strip() for t in watchlist_env.split(”,”) if t.strip()]
+WATCHLIST = [t.strip() for t in watchlist_env.split(",") if t.strip()]
 if not WATCHLIST:
-log.error(“No markets to watch! Set KALSHI_WATCHLIST in Railway Variables.”)
+log.error("No markets to watch! Set KALSHI_WATCHLIST in Railway Variables.")
 sys.exit(1)
-dry_run = os.getenv(“DRY_RUN”, “true”).lower() != “false”
+dry_run = os.getenv("DRY_RUN", "true").lower() != "false"
 bot = KalshiQuantBot(
 watchlist=WATCHLIST,
-poll_interval_secs=int(os.getenv(“POLL_INTERVAL”, “30”)),
+poll_interval_secs=int(os.getenv("POLL_INTERVAL", "30")),
 dry_run=dry_run,
-gamma=float(os.getenv(“GAMMA”, “0.1”)),
-glft_Q=float(os.getenv(“GLFT_Q”, “50.0”)),
+gamma=float(os.getenv("GAMMA", "0.1")),
+glft_Q=float(os.getenv("GLFT_Q", "50.0")),
 )
 bot.run()
