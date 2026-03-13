@@ -53,7 +53,7 @@ self.risk = RiskManager()
 self.inventory = {t: 0.0 for t in watchlist}
 self.stats = {
 "ticks": 0, "trades": 0, "blocked_vpin": 0,
-"blocked_jump": 0, “blocked_entropy”: 0, “blocked_risk”: 0,
+"blocked_jump": 0, "blocked_entropy": 0, "blocked_risk": 0,
 }
 log.info("=" * 65)
 log.info("Kalshi Quant Bot starting")
