@@ -9,32 +9,32 @@ import tempfile
 import logging
 import kalshi_python
 
-log = logging.getLogger(“kalshi.client”)
+log = logging.getLogger("kalshi.client")
 
-PROD_HOST = “https://api.elections.kalshi.com/trade-api/v2”
-DEMO_HOST = “https://demo-api.kalshi.co/trade-api/v2”
+PROD_HOST = "https://api.elections.kalshi.com/trade-api/v2"
+DEMO_HOST = "https://demo-api.kalshi.co/trade-api/v2"
 
 def _get_private_key_pem() -> str:
 # Railway: paste key content as env var
-key_content = os.getenv(“KALSHI_PRIVATE_KEY_CONTENT”, “”).strip()
+key_content = os.getenv("KALSHI_PRIVATE_KEY_CONTENT", "").strip()
 if key_content:
-log.info(“Private key loaded from KALSHI_PRIVATE_KEY_CONTENT”)
+log.info("Private key loaded from KALSHI_PRIVATE_KEY_CONTENT")
 return key_content
 # Local: read from file
-key_path = os.getenv(“KALSHI_PRIVATE_KEY_PATH”, “kalshi.key”)
+key_path = os.getenv("KALSHI_PRIVATE_KEY_PATH", "kalshi.key")
 if not os.path.exists(key_path):
 raise FileNotFoundError(
-f”Private key not found at ‘{key_path}’.\n”
-“For Railway: set KALSHI_PRIVATE_KEY_CONTENT in Variables.\n”
-“For local: set KALSHI_PRIVATE_KEY_PATH to your .pem file.”
+f"Private key not found at ‘{key_path}’.\n"
+"For Railway: set KALSHI_PRIVATE_KEY_CONTENT in Variables.\n"
+"For local: set KALSHI_PRIVATE_KEY_PATH to your .pem file."
 )
-log.info(f”Private key loaded from {key_path}”)
+log.info(f"Private key loaded from {key_path}")
 return open(key_path).read()
 
 class KalshiClient:
 def **init**(self):
-env  = os.getenv(“KALSHI_ENV”, “demo”).lower()
-host = PROD_HOST if env == “prod” else DEMO_HOST
+env  = os.getenv("KALSHI_ENV", "demo").lower()
+host = PROD_HOST if env == "prod" else DEMO_HOST
 
 ```
     cfg = kalshi_python.Configuration(host=host)
