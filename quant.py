@@ -17,7 +17,7 @@ from dataclasses import dataclass
 
 from market_data import MarketSnapshot
 
-log = logging.getLogger(“kalshi.quant”)
+log = logging.getLogger("kalshi.quant")
 
 # ═════════════════════════════════════════════════════════════════════════════
 
