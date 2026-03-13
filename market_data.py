@@ -1,7 +1,7 @@
-“””
+"""
 market_data.py
 MarketSnapshot dataclass + MarketAnalyzer that keeps rolling price/trade history.
-“””
+"""
 
 import math
 import logging
@@ -9,7 +9,7 @@ import statistics
 from dataclasses import dataclass, field
 from typing import Optional
 
-log = logging.getLogger(“kalshi.market_data”)
+log = logging.getLogger("kalshi.market_data")
 
 @dataclass
 class OrderBookLevel:
