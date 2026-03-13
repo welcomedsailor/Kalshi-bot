@@ -138,8 +138,8 @@ def _execute(self, ticker, signal, price, size):
         log.error("Order failed: " + str(e))
 ```
 
-if **name** == “**main**”:
-watchlist_env = os.getenv(“KALSHI_WATCHLIST”, “”)
+if **name** == "**main**":
+watchlist_env = os.getenv("KALSHI_WATCHLIST", "")
 WATCHLIST = [t.strip() for t in watchlist_env.split(",") if t.strip()]
 if not WATCHLIST:
 log.error("No markets to watch! Set KALSHI_WATCHLIST in Railway Variables.")
