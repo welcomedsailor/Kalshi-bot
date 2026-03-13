@@ -7,17 +7,17 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def check_env():
-missing = []
-if not os.getenv("KALSHI_API_KEY_ID"):
-missing.append("KALSHI_API_KEY_ID")
-if not os.getenv("KALSHI_PRIVATE_KEY_CONTENT") and   
-not os.path.exists(os.getenv("KALSHI_PRIVATE_KEY_PATH", "kalshi.key")):
-missing.append("KALSHI_PRIVATE_KEY_CONTENT")
-if missing:
-print("ERROR: Missing required environment variables:")
-for m in missing:
-print("  - " + m)
-sys.exit(1)
+    missing = []
+    if not os.getenv("KALSHI_API_KEY_ID"):
+    missing.append("KALSHI_API_KEY_ID")
+    if not os.getenv("KALSHI_PRIVATE_KEY_CONTENT") and   
+    not os.path.exists(os.getenv("KALSHI_PRIVATE_KEY_PATH", "kalshi.key")):
+    missing.append("KALSHI_PRIVATE_KEY_CONTENT")
+    if missing:
+    print("ERROR: Missing required environment variables:")
+    for m in missing:
+    print("  - " + m)
+    sys.exit(1)
 
 check_env()
 
