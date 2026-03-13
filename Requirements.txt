@@ -1,4 +1,0 @@
-kalshi-python
-python-dotenv
-numpy
-requests
